@@ -1,8 +1,8 @@
-import room from "../models/room.js";
-import hotel from "../models/hotel.js";
+const room = require("../models/room.js");
+const hotel = require("../models/hotel.js");
 
 
-export const postRoom=async (req,res,next)=>{
+exports.postRoom=async (req,res,next)=>{
     const hotelId=req.params.hotelid
     const newRoom= new room(req.body)
 
@@ -21,7 +21,7 @@ export const postRoom=async (req,res,next)=>{
     }
 }
 
-export const updateRoom=async(req,res,next)=>{
+exports.updateRoom=async(req,res,next)=>{
     try {
         const updatedRoom=await room.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
         res.status(200).json(updatedRoom)   
@@ -29,7 +29,7 @@ export const updateRoom=async(req,res,next)=>{
            next(error)
        }
 }
-export const updateRoomAvailability=async(req,res,next)=>{
+exports.updateRoomAvailability=async(req,res,next)=>{
     try {
         await room.updateOne({'roomNumber._id':req.params.id},{
             $push:{
@@ -42,7 +42,7 @@ export const updateRoomAvailability=async(req,res,next)=>{
        }
 }
 
-export const deleteRoom=async(req,res,next)=>{
+exports.deleteRoom=async(req,res,next)=>{
     const hotelId=req.params.hotelid
     try {
         await room.findByIdAndDelete(
@@ -61,7 +61,7 @@ export const deleteRoom=async(req,res,next)=>{
     }
 }
 
-export const getByIdRoom=async(req,res,next)=>{
+exports.getByIdRoom=async(req,res,next)=>{
     try {
         const foundRoom=await room.findById(req.params.id)
       res.status(200).json(foundRoom)   
@@ -70,7 +70,7 @@ export const getByIdRoom=async(req,res,next)=>{
      }
 }
 
-export const getRoom=async(req,res,next)=>{
+exports.getRoom=async(req,res,next)=>{
     try {
         const rooms= await room.find()
       res.status(200).json(rooms)   

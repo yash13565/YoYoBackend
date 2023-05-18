@@ -1,12 +1,12 @@
-import express from "express"
-import dotenv from "dotenv"
-import mongoose from "mongoose"
-import authRoute from "./routes/auth.js"
-import roomsRoute from "./routes/rooms.js"
-import hotelsRoute from "./routes/hotels.js"
-import usersRoute from "./routes/users.js"
-import cookieParser from "cookie-parser"
-import cors from "cors"
+const express = require("express")
+const dotenv = require("dotenv")
+const mongoose = require("mongoose")
+const authRoute = require("./routes/auth.js")
+const roomsRoute = require("./routes/rooms.js")
+const hotelsRoute = require("./routes/hotels.js")
+const usersRoute = require("./routes/users.js")
+const cookieParser = require("cookie-parser")
+const cors = require("cors")
 
 const app=express()
 dotenv.config()

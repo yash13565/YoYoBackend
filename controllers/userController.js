@@ -1,8 +1,8 @@
-import user from "../models/user.js";
+const user = require( "../models/user.js");
 
 
 
-export const updateUser=async(req,res,next)=>{
+exports.updateUser=async(req,res,next)=>{
     try {
         const updatedUser=await user.findByIdAndUpdate(req.params.id,{$set:req.body},{new:true})
         res.status(200).json(updatedUser)   
@@ -11,7 +11,7 @@ export const updateUser=async(req,res,next)=>{
        }
 }
 
-export const deleteUser=async(req,res,next)=>{
+exports.deleteUser=async(req,res,next)=>{
     try {
         await user.findByIdAndDelete(
             req.params.id
@@ -22,7 +22,7 @@ export const deleteUser=async(req,res,next)=>{
     }
 }
 
-export const getByIdUser=async(req,res,next)=>{
+exports.getByIdUser=async(req,res,next)=>{
     try {
         const foundUser=await user.findById(req.params.id)
       res.status(200).json(foundUser)   
@@ -31,7 +31,7 @@ export const getByIdUser=async(req,res,next)=>{
      }
 }
 
-export const getUser=async(req,res,next)=>{
+exports.getUser=async(req,res,next)=>{
     try {
         const users= await user.find()
       res.status(200).json(users)   
